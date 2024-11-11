@@ -29,13 +29,13 @@ components:
           example: "string"
         id:
           type: "number"
-          example: 599
+          example: 907
         sender_id:
           type: "number"
-          example: 389
+          example: 318
         recipient_id:
           type: "number"
-          example: 706
+          example: 551
         message:
           type: "string"
           example: "string"
@@ -58,13 +58,13 @@ components:
           example: "string"
         id:
           type: "number"
-          example: 290
+          example: 590
         text:
           type: "string"
           example: "string"
         user_id:
           type: "number"
-          example: 608
+          example: 405
         image_url:
           type: "string"
           example: "string"
@@ -120,22 +120,19 @@ components:
           example: "string"
         id:
           type: "number"
-          example: 376
+          example: 693
         message:
           type: "string"
           example: "string"
         user_id:
           type: "number"
-          example: 757
+          example: 791
         post_id:
           type: "number"
-          example: 819
-        reply_comment_id:
-          type: "number"
-          example: 336
+          example: 893
         hub_event_id:
           type: "number"
-          example: 461
+          example: 30
         created_at:
           type: "string"
           example: "2021-03-23T16:13:08.489+01:00"
@@ -150,63 +147,6 @@ components:
         post:
           $ref: "#/components/schemas/Post"
           example: "string"
-        replied:
-          $ref: "#/components/schemas/PostComment"
-          example: "string"
-        replies:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/PostComment"
-            example: "string"
-        reactions:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/PostCommentReaction"
-            example: "string"
-        reaction_count:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/PostCommentReaction"
-            example: "string"
-        serialize_extras_true:
-          type: "string"
-          example: "string"
-      description: "Model"
-    PostCommentReaction:
-      type: "object"
-      properties:
-        static_table_post_comment_reactions:
-          type: "string"
-          example: "string"
-        id:
-          type: "number"
-          example: 580
-        emoji_type:
-          type: "string"
-          example: "string"
-        user_id:
-          type: "number"
-          example: 217
-        post_comment_id:
-          type: "number"
-          example: 672
-        hub_event_id:
-          type: "number"
-          example: 446
-        created_at:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
-        updated_at:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
-        user:
-          $ref: "#/components/schemas/User"
-          example: "string"
-        comment:
-          $ref: "#/components/schemas/PostComment"
-          example: "string"
         serialize_extras_true:
           type: "string"
           example: "string"
@@ -219,7 +159,7 @@ components:
           example: "string"
         id:
           type: "number"
-          example: 158
+          example: 82
         content_url:
           type: "string"
           example: "string"
@@ -234,13 +174,13 @@ components:
           example: "string"
         width:
           type: "number"
-          example: 891
+          example: 272
         height:
           type: "number"
-          example: 63
+          example: 589
         hub_event_id:
           type: "number"
-          example: 767
+          example: 809
         user:
           $ref: "#/components/schemas/User"
           example: "string"
@@ -256,19 +196,19 @@ components:
           example: "string"
         id:
           type: "number"
-          example: 536
+          example: 310
         emoji_type:
           type: "string"
           example: "string"
         user_id:
           type: "number"
-          example: 17
+          example: 993
         post_id:
           type: "number"
-          example: 498
+          example: 848
         hub_event_id:
           type: "number"
-          example: 965
+          example: 947
         created_at:
           type: "string"
           example: "2021-03-23T16:13:08.489+01:00"
@@ -327,10 +267,6 @@ components:
         temp_token_created_at:
           $ref: "#/components/schemas/Date"
           example: "string"
-        remember_me_token_created_at:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
         messages:
           type: "array"
           items:
@@ -355,8 +291,10 @@ paths:
     get:
       summary: " (UsersController::list)"
       description: ""
+      operationId: "usersControllerList"
       parameters: []
-      tags: []
+      tags:
+        - ""
       responses:
         401:
           description: "Unauthorized"
@@ -369,6 +307,7 @@ paths:
     get:
       summary: " (UsersController::get)"
       description: ""
+      operationId: "usersControllerGet"
       parameters:
         - in: "path"
           name: "id"
@@ -388,6 +327,7 @@ paths:
     put:
       summary: " (UsersController::edit)"
       description: ""
+      operationId: "usersControllerEdit"
       parameters:
         - in: "path"
           name: "id"
@@ -410,6 +350,7 @@ paths:
     delete:
       summary: " (UsersController::delete)"
       description: ""
+      operationId: "usersControllerDelete"
       parameters:
         - in: "path"
           name: "id"
@@ -426,70 +367,11 @@ paths:
       security:
         - BearerAuth:
             - "access"
-  /profile/edit-password:
-    post:
-      summary: "Edit Password endpoint (AuthController::editPassword)"
-      description: ""
-      parameters: []
-      tags:
-        - "EDIT-PASSWORD"
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: "object"
-              example:
-                message: "Password changed successfully"
-          description: "OK: {\"message\": \"Password changed successfully\"}"
-        401:
-          content:
-            application/json:
-              schema:
-                type: "object"
-              example:
-                errors:
-                  - message: "User not found"
-          description: "Unauthorized: {\"errors\": [{\"message\": \"User not found\"}]}"
-        403:
-          description: "Forbidden"
-      security:
-        - BearerAuth:
-            - "access"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: "object"
-            example:
-              password: "string"
-  /profile/logout:
-    get:
-      summary: "Logout endpoint (AuthController::logout)"
-      description: "OK: {\"message\": \"Logout successfully\"}"
-      parameters: []
-      tags:
-        - "LOGOUT"
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: "object"
-              example:
-                message: "Logout successfully"
-          description: "OK: {\"message\": \"Logout successfully\"}"
-        401:
-          description: "Unauthorized"
-        403:
-          description: "Forbidden"
-      security:
-        - BearerAuth:
-            - "access"
-  /register:
+  /auth/register:
     post:
       summary: "Register endpoint (AuthController::register)"
       description: ""
+      operationId: "authControllerRegister"
       parameters:
         - in: "path"
           name: "provider"
@@ -502,7 +384,8 @@ paths:
               - "facebook"
               - "apple"
           required: true
-      tags: []
+      tags:
+        - "REGISTER"
       responses:
         200:
           content:
@@ -531,13 +414,14 @@ paths:
               remember_me_token: "string"
               is_online: true
               temp_token_created_at: {}
-              remember_me_token_created_at: "2021-03-23T16:13:08.489+01:00"
-  /login:
+  /auth/login:
     post:
       summary: "Login endpoint (AuthController::login)"
       description: ""
+      operationId: "authControllerLogin"
       parameters: []
-      tags: []
+      tags:
+        - "LOGIN"
       responses:
         200:
           content:
@@ -566,12 +450,15 @@ paths:
             example:
               email: "string"
               password: "string"
-  /forgot-password:
+              rememberMe: "boolean"
+  /auth/forgot-password:
     post:
       summary: "Forgot Password endpoint (AuthController::forgotPassword)"
       description: ""
+      operationId: "authControllerForgotPassword"
       parameters: []
-      tags: []
+      tags:
+        - "FORGOT-PASSWORD"
       responses:
         200:
           content:
@@ -598,10 +485,11 @@ paths:
               type: "object"
             example:
               email: "string"
-  /reset-password/{tempToken}/{email}:
+  /auth/reset-password/{tempToken}/{email}:
     get:
       summary: "Reset Password endpoint (AuthController::resetPassword)"
       description: "OK: {\"message\": \"Password changed successfully\"}"
+      operationId: "authControllerResetPassword"
       parameters:
         - in: "path"
           name: "tempToken"
@@ -614,7 +502,7 @@ paths:
             type: "string"
           required: true
       tags:
-        - ":TEMPTOKEN"
+        - "RESET-PASSWORD"
       responses:
         200:
           content:
@@ -634,21 +522,174 @@ paths:
                   - message: "User not found"
           description: "Unauthorized: {\"errors\": [{\"message\": \"User not found\"}]}"
       security: []
-  /refresh-token:
-    post:
-      summary: " (AuthController::refreshToken)"
-      description: ""
+  /auth/validate-username:
+    get:
+      summary: "Check if username is available endpoint (AuthController::isUsernameAvailable)"
+      description: "OK: {\"message\": \"username is available\", \"isAvailable\": true}"
+      operationId: "authControllerIsUsernameAvailable"
       parameters: []
-      tags: []
+      tags:
+        - "VALIDATE-USERNAME"
       responses:
-        201:
-          description: "Created"
+        200:
           content:
-            application/json: {}
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "username is available"
+                isAvailable: true
+          description: "OK: {\"message\": \"username is available\", \"isAvailable\": true}"
+        400:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "username is required"
+          description: "Bad Request: {\"message\": \"username is required\"}"
+        500:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "Internal server error"
+          description: "Internal Server Error: {\"message\": \"Internal server error\"}"
+      security: []
+  /auth/validate-email:
+    get:
+      summary: "Check if email is available endpoint (AuthController::isEmailAvailable)"
+      description: "OK: {\"message\": \"email is available\", \"isAvailable\": true}"
+      operationId: "authControllerIsEmailAvailable"
+      parameters: []
+      tags:
+        - "VALIDATE-EMAIL"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "email is available"
+                isAvailable: true
+          description: "OK: {\"message\": \"email is available\", \"isAvailable\": true}"
+        400:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "email is required"
+          description: "Bad Request: {\"message\": \"email is required\"}"
+        500:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "Internal server error"
+          description: "Internal Server Error: {\"message\": \"Internal server error\"}"
+      security: []
+  /auth/refresh-token:
+    post:
+      summary: "Refresh Token endpoint (AuthController::refreshToken)"
+      description: ""
+      operationId: "authControllerRefreshToken"
+      parameters: []
+      tags:
+        - "REFRESH-TOKEN"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                auth:
+                  type: "string"
+                  token: "string"
+          description: "OK: { \"auth\": {\"type\": \"string\", \"token\": \"string\"}}"
+        401:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                errors:
+                  - message: "Unable to refresh token, please try again later."
+          description: "Unauthorized: {\"errors\": [{\"message\": \"Unable to refresh token, please try again later.\"}]}"
       security: []
       requestBody:
         content:
-          application/json: {}
+          application/json:
+            schema:
+              type: "object"
+            example:
+              refreshToken: "string"
+  /auth/profile/edit-password:
+    post:
+      summary: "Edit Password endpoint (AuthController::editPassword)"
+      description: ""
+      operationId: "authControllerEditPassword"
+      parameters: []
+      tags:
+        - "PROFILE"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "Password changed successfully"
+          description: "OK: {\"message\": \"Password changed successfully\"}"
+        401:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                errors:
+                  - message: "User not found"
+          description: "Unauthorized: {\"errors\": [{\"message\": \"User not found\"}]}"
+        403:
+          description: "Forbidden"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+            example:
+              password: "string"
+  /auth/profile/logout:
+    get:
+      summary: "Logout endpoint (AuthController::logout)"
+      description: "OK: {\"message\": \"Logout successfully\"}"
+      operationId: "authControllerLogout"
+      parameters: []
+      tags:
+        - "PROFILE"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+              example:
+                message: "Logout successfully"
+          description: "OK: {\"message\": \"Logout successfully\"}"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+        - BearerAuth:
+            - "access"
   /user/post:
     get:
       summary: " (route.ts)"
@@ -791,16 +832,11 @@ paths:
       security:
         - BearerAuth:
             - "access"
-  /user/post_reaction/{postId}:
+  /user/post_reaction/x:postId:
     delete:
       summary: " (route.ts)"
       description: ""
-      parameters:
-        - in: "path"
-          name: "postId"
-          schema:
-            type: "string"
-          required: true
+      parameters: []
       tags:
         - "POST_REACTION"
       responses:
@@ -904,79 +940,11 @@ paths:
       security:
         - BearerAuth:
             - "access"
-  /user/post_comment_reaction:
-    post:
-      summary: " (route.ts)"
-      description: ""
-      parameters: []
-      tags:
-        - "POST_COMMENT_REACTION"
-      responses:
-        401:
-          description: "Unauthorized"
-        403:
-          description: "Forbidden"
-      security:
-        - BearerAuth:
-            - "access"
-      requestBody:
-        content:
-          application/json: {}
-    get:
-      summary: " (route.ts)"
-      description: ""
-      parameters: []
-      tags:
-        - "POST_COMMENT_REACTION"
-      responses:
-        401:
-          description: "Unauthorized"
-        403:
-          description: "Forbidden"
-      security:
-        - BearerAuth:
-            - "access"
-    put:
-      summary: " (route.ts)"
-      description: ""
-      parameters: []
-      tags:
-        - "POST_COMMENT_REACTION"
-      responses:
-        401:
-          description: "Unauthorized"
-        403:
-          description: "Forbidden"
-      security:
-        - BearerAuth:
-            - "access"
-      requestBody:
-        content:
-          application/json: {}
-  /user/post_comment_reaction/{commentId}:
-    delete:
-      summary: " (route.ts)"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "commentId"
-          schema:
-            type: "string"
-          required: true
-      tags:
-        - "POST_COMMENT_REACTION"
-      responses:
-        401:
-          description: "Unauthorized"
-        403:
-          description: "Forbidden"
-      security:
-        - BearerAuth:
-            - "access"
   /messages/list:
     get:
       summary: "Get a list of list (MessageController::index)"
       description: ""
+      operationId: "messageControllerIndex"
       parameters: []
       tags:
         - "LIST"
@@ -992,6 +960,7 @@ paths:
     get:
       summary: "Get a single instance of :id (MessageController::show)"
       description: ""
+      operationId: "messageControllerShow"
       parameters:
         - in: "path"
           name: "id"
@@ -1011,6 +980,7 @@ paths:
     put:
       summary: "Update :id (MessageController::update)"
       description: ""
+      operationId: "messageControllerUpdate"
       parameters:
         - in: "path"
           name: "id"
@@ -1033,6 +1003,7 @@ paths:
     delete:
       summary: "Delete :id (MessageController::destroy)"
       description: ""
+      operationId: "messageControllerDestroy"
       parameters:
         - in: "path"
           name: "id"
@@ -1053,8 +1024,10 @@ paths:
     post:
       summary: " (MessageController::store)"
       description: ""
+      operationId: "messageControllerStore"
       parameters: []
-      tags: []
+      tags:
+        - ""
       responses:
         401:
           description: "Unauthorized"
@@ -1066,7 +1039,7 @@ paths:
       requestBody:
         content:
           application/json: {}
-  /:
+  :
     get:
       summary: " (route.ts)"
       description: ""
@@ -1083,19 +1056,27 @@ tags:
     description: "Everything related to *"
   - name: ":ID"
     description: "Everything related to :ID"
-  - name: "EDIT-PASSWORD"
-    description: "Everything related to EDIT-PASSWORD"
-  - name: "LOGOUT"
-    description: "Everything related to LOGOUT"
-  - name: ":TEMPTOKEN"
-    description: "Everything related to :TEMPTOKEN"
+  - name: "REGISTER"
+    description: "Everything related to REGISTER"
+  - name: "LOGIN"
+    description: "Everything related to LOGIN"
+  - name: "FORGOT-PASSWORD"
+    description: "Everything related to FORGOT-PASSWORD"
+  - name: "RESET-PASSWORD"
+    description: "Everything related to RESET-PASSWORD"
+  - name: "VALIDATE-USERNAME"
+    description: "Everything related to VALIDATE-USERNAME"
+  - name: "VALIDATE-EMAIL"
+    description: "Everything related to VALIDATE-EMAIL"
+  - name: "REFRESH-TOKEN"
+    description: "Everything related to REFRESH-TOKEN"
+  - name: "PROFILE"
+    description: "Everything related to PROFILE"
   - name: "POST"
     description: "Everything related to POST"
   - name: "POST_REACTION"
     description: "Everything related to POST_REACTION"
   - name: "POST_COMMENT"
     description: "Everything related to POST_COMMENT"
-  - name: "POST_COMMENT_REACTION"
-    description: "Everything related to POST_COMMENT_REACTION"
   - name: "LIST"
     description: "Everything related to LIST"

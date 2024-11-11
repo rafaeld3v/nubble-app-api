@@ -2,6 +2,7 @@ ARG NODE_IMAGE=node:20.12.2-alpine
 
 FROM $NODE_IMAGE AS base
 RUN apk --no-cache add dumb-init make
+RUN apk --no-cache add dumb-init bash
 RUN mkdir -p /home/node && chown node:node /home/node
 WORKDIR /home/node
 USER node
